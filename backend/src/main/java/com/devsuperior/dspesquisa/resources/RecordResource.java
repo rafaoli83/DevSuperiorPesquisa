@@ -33,15 +33,15 @@ public class RecordResource {
 	
 	@GetMapping
 	public ResponseEntity<Page<RecordDTO>> findAll(
-			@RequestParam(value = "min", defaultValue = " ") String min,
+			@RequestParam(value = "min", defaultValue = "") String min,
 			@RequestParam(value = "max", defaultValue = "") String max,
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "0") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "moment") String orderBy,
 			@RequestParam(value = "direction", defaultValue = "DESC") String direction) {
 		
-		Instant minDate = ("".equals(min)||" ".equals(min)) ? null : Instant.parse(min);
-		Instant maxDate = ("".equals(max)||" ".equals(max)) ? null : Instant.parse(max);
+		Instant minDate = ("".equals(min)) ? null : Instant.parse(min);
+		Instant maxDate = ("".equals(max)) ? null : Instant.parse(max);
 		
 		if (linesPerPage == 0) {
 			linesPerPage = Integer.MAX_VALUE;
